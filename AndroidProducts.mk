@@ -5,7 +5,7 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/lineage_blossom.mk
+    $(LOCAL_DIR)/pixelos_blossom.mk
 
 COMMON_LUNCH_CHOICES := \
     lineage_blossom-user \

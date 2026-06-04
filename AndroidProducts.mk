@@ -11,3 +11,6 @@ COMMON_LUNCH_CHOICES := \
     lineage_blossom-user \
     lineage_blossom-userdebug \
     lineage_blossom-eng
+
+PIXELOS_MAINTAINER := MrGadget84
+PRODUCT_MAINTAINER := MrGadget84

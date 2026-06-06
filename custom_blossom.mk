@@ -12,8 +12,8 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/non_ab_device.mk)
 # Inherit from device makefile.
 $(call inherit-product, device/xiaomi/blossom/device.mk)
 
-# Inherit some common Lineage stuff.
-$(call inherit-product, vendor/lineage/config/common_full_phone.mk)
+# Inherit PixelOS stuff (замена lineage)
+$(call inherit-product, vendor/pixel/config/common_full_phone.mk)
 
 scr_resolution := 720
 TARGET_SUPPORTS_BLUR := true

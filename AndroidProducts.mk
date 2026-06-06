@@ -5,12 +5,12 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/custom_blossom.mk
+    $(LOCAL_DIR)/lineage_blossom.mk
 
 COMMON_LUNCH_CHOICES := \
-    custom_blossom-user \
-    custom_blossom-userdebug \
-    custom_blossom-eng
+    lineage_blossom-user \
+    lineage_blossom-userdebug \
+    lineage_blossom-eng
 
 PIXELOS_MAINTAINER := MrGadget84
 PRODUCT_MAINTAINER := MrGadget84

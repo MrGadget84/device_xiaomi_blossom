@@ -7,3 +7,7 @@ ${deviceDir}/patch_camera.sh
 export SKIP_ABI_CHECKS=true
 
 export TARGET_BOARD_PLATFORM=mt6765
+
+add_lunch_combo custom_blossom-user
+add_lunch_combo custom_blossom-userdebug
+add_lunch_combo custom_blossom-eng

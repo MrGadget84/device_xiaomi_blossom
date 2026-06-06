@@ -5,7 +5,7 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/pixelos_blossom.mk
+    $(LOCAL_DIR)/custom_blossom.mk
 
 COMMON_LUNCH_CHOICES := \
     pixelos_blossom-user \

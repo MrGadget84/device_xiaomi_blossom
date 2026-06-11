@@ -68,7 +68,7 @@ MALLOC_SVELTE_FOR_LIBC32 := true
 # Kernel
 TARGET_KERNEL_CONFIG := blossom_defconfig # no file, only make build system happy
 TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)-kernel/kernel # automatically copied
-TARGET_PREBUILT_DTB := $(DEVICE_PATH)-kernel/dtb.img # for mkbootimg only
+TARGET_PREBUILT_DTB := $(DEVICE_PATH)-kernel/dtb # for mkbootimg only
 BOARD_PREBUILT_DTBOIMAGE := $(DEVICE_PATH)-kernel/dtbo.img # automatically copied
 TARGET_FORCE_PREBUILT_KERNEL := true # dont really build with our imcomplete "source"
 
@@ -219,3 +219,31 @@ include vendor/xiaomi/blossom/BoardConfigVendor.mk
 
 #Miui
 include vendor/xiaomi/miuicamera/SEPolicy.mk
+TARGET_BOARD_INFO_FILE := device/xiaomi/blossom/board-info.txt
+
+# SOONG_CONFIG_NAMESPACES += ctsKiller
+# SOONG_CONFIG_ctsKiller := true
+# SOONG_CONFIG_ctsKiller_remove_modules := cts_defaults mts_defaults sts_defaults cts_error_prone_rules framework-connectivity-test-defaults connectivity-mainline-presubmit-cc-defaults mts-target-sdk-version-current
+
+# SOONG_CONFIG_NAMESPACES += blossomExclude
+# SOONG_CONFIG_blossomExclude += exclude_dirs
+# SOONG_CONFIG_blossomExclude_exclude_dirs := \
+    packages/modules/AdServices/adservices/tests \
+    packages/modules/HealthFitness/tests \
+    packages/modules/CaptivePortalLogin/tests \
+    tools/platform-compat/java/android/compat/testing/app \
+    system/timezone/apex/tests \
+    art/dexopt_chroot_setup \
+    packages/modules/Wifi/service/tests \
+    frameworks/opt/telephony/tests \
+    platform_testing \
+
+BUILD_BROKEN_MISSING_DEPENDENCIES := true
+SOONG_ALLOW_MISSING_DEPENDENCIES := true
+BOARD_TRUSTY_DISABLE := true
+TRUSTY_BUILD_SCRIPTS := false
+DISABLE_METALAVA := true
+WITHOUT_CHECK_API := true
+WITHOUT_CHECK_API := true
+TARGET_NO_APICHECK := true
+DISABLE_METALAVA := true

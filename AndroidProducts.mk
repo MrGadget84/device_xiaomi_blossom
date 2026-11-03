@@ -1,16 +1,12 @@
 #
-# Copyright (C) 2023 The LineageOS Project
-#
-# SPDX-License-Identifier: Apache-2.0
+# Device product definitions for Xiaomi Redmi 9A (blossom)
+# Halcyon Project 16.2 / Android 16
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/custom_blossom.mk
+    $(LOCAL_DIR)/halcyon_blossom.mk
 
 COMMON_LUNCH_CHOICES := \
-    custom_blossom-user \
-    custom_blossom-userdebug \
-    custom_blossom-eng
-
-PIXELOS_MAINTAINER := MrGadget84
-PRODUCT_MAINTAINER := MrGadget84
+    halcyon_blossom-user \
+    halcyon_blossom-userdebug \
+    halcyon_blossom-eng

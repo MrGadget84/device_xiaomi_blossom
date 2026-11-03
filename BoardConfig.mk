@@ -66,11 +66,22 @@ MALLOC_SVELTE := true
 MALLOC_SVELTE_FOR_LIBC32 := true
 
 # Kernel
-TARGET_KERNEL_CONFIG := blossom_defconfig # no file, only make build system happy
-TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)-kernel/kernel # automatically copied
-TARGET_PREBUILT_DTB := $(DEVICE_PATH)-kernel/dtb # for mkbootimg only
-BOARD_PREBUILT_DTBOIMAGE := $(DEVICE_PATH)-kernel/dtbo.img # automatically copied
-TARGET_FORCE_PREBUILT_KERNEL := true # dont really build with our imcomplete "source"
+# The local manifest checks out the source at device/xiaomi/blossom-kernel.
+# This repository is a Linux 4.19.325 source tree (not a prebuilt image bundle).
+TARGET_KERNEL_SOURCE := device/xiaomi/blossom-kernel
+TARGET_KERNEL_CONFIG := blossom_defconfig
+TARGET_KERNEL_ARCH := arm64
+TARGET_KERNEL_HEADER_ARCH := arm64
+TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-androidkernel-
+TARGET_KERNEL_CLANG_COMPILE := true
+
+# Kernel outputs
+BOARD_KERNEL_IMAGE_NAME := Image.gz
+TARGET_KERNEL_DTB := dtbs
+TARGET_KERNEL_DTBO := dtbo.img
+BOARD_KERNEL_SEPARATED_DTBO := true
+TARGET_NEEDS_DTBOIMAGE := true
+BOARD_PREBUILT_DTBOIMAGE := $(PRODUCT_OUT)/dtbo.img
 
 # Bootloader
 BOARD_BOOT_HEADER_VERSION := 2
@@ -94,7 +105,6 @@ BOARD_MKBOOTIMG_ARGS += --second_offset $(BOARD_SECOND_OFFSET)
 BOARD_MKBOOTIMG_ARGS += --ramdisk_offset $(BOARD_RAMDISK_OFFSET)
 BOARD_MKBOOTIMG_ARGS += --tags_offset $(BOARD_KERNEL_TAGS_OFFSET)
 BOARD_MKBOOTIMG_ARGS += --dtb_offset $(BOARD_DTB_OFFSET)
-BOARD_MKBOOTIMG_ARGS += --dtb $(TARGET_PREBUILT_DTB)
 
 BOARD_KERNEL_CMDLINE := bootopt=64S3,32N2,64N2
 BOARD_KERNEL_CMDLINE += androidboot.init_fatal_reboot_target=recovery
@@ -219,31 +229,3 @@ include vendor/xiaomi/blossom/BoardConfigVendor.mk
 
 #Miui
 include vendor/xiaomi/miuicamera/SEPolicy.mk
-TARGET_BOARD_INFO_FILE := device/xiaomi/blossom/board-info.txt
-
-# SOONG_CONFIG_NAMESPACES += ctsKiller
-# SOONG_CONFIG_ctsKiller := true
-# SOONG_CONFIG_ctsKiller_remove_modules := cts_defaults mts_defaults sts_defaults cts_error_prone_rules framework-connectivity-test-defaults connectivity-mainline-presubmit-cc-defaults mts-target-sdk-version-current
-
-# SOONG_CONFIG_NAMESPACES += blossomExclude
-# SOONG_CONFIG_blossomExclude += exclude_dirs
-# SOONG_CONFIG_blossomExclude_exclude_dirs := \
-    packages/modules/AdServices/adservices/tests \
-    packages/modules/HealthFitness/tests \
-    packages/modules/CaptivePortalLogin/tests \
-    tools/platform-compat/java/android/compat/testing/app \
-    system/timezone/apex/tests \
-    art/dexopt_chroot_setup \
-    packages/modules/Wifi/service/tests \
-    frameworks/opt/telephony/tests \
-    platform_testing \
-
-BUILD_BROKEN_MISSING_DEPENDENCIES := true
-SOONG_ALLOW_MISSING_DEPENDENCIES := true
-BOARD_TRUSTY_DISABLE := true
-TRUSTY_BUILD_SCRIPTS := false
-DISABLE_METALAVA := true
-WITHOUT_CHECK_API := true
-WITHOUT_CHECK_API := true
-TARGET_NO_APICHECK := true
-DISABLE_METALAVA := true

@@ -13,10 +13,7 @@ PRODUCT_ENFORCE_VINTF_MANIFEST := false
 
 PRODUCT_OTA_ENFORCE_VINTF_KERNEL_REQUIREMENTS := false
 
-# Override kernel version for VINTF compatibility
-
-PRODUCT PROPERTY OVERRIDES += \
-ro.kernel.version-4.19.191
+# Kernel/VINTF compatibility is handled by the flags above.
 
 # Dynamic Partitions
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
@@ -269,7 +266,6 @@ PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.4.vendor \
     android.hardware.camera.provider@2.5.vendor \
     android.hardware.camera.provider@2.6.vendor \
-    libutils-v30 \
     libutils-v32 \
     libshim_utils
 
@@ -392,9 +388,7 @@ PRODUCT_COPY_FILES += \
     vendor/xiaomi/blossom/proprietary/vendor/firmware/novatek_ts_truly_fw.bin:recovery/root/vendor/firmware/novatek_ts_truly_fw.bin \
     vendor/xiaomi/blossom/proprietary/vendor/firmware/novatek_ts_truly_mp.bin:recovery/root/vendor/firmware/novatek_ts_truly_mp.bin
 
-# FM Radio
-PRODUCT_PACKAGES += \
-    RevampedFMRadio
+
 
 # HIDL
 PRODUCT_PACKAGES += \
@@ -533,6 +527,11 @@ PRODUCT_PACKAGES += \
     SystemUIOverlayBlossom \
     TelephonyOverlayBlossom \
     WifiResOverlayBlossom
+
+
+# Remove unwanted packages
+PRODUCT_PACKAGES += \
+    RemovePackagesBlossom
 
 # Inherit the proprietary files
 $(call inherit-product, vendor/xiaomi/blossom/blossom-vendor.mk)
